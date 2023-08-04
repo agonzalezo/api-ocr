@@ -54,6 +54,8 @@ jobs:
       run: kubectl config use-context default
     - name: Make deployable..
       run: cd kubernetes && chmod +x deploy.sh && ./deploy.sh
+    - name: Debug..
+      run: cd kubernetes && ls -ltrha && cat deployable.yml.tmp
     - name: Deploy to Kubernetes
       run: kubectl apply -f kubernetes/deployable.yml.tmp
     - name: Restart Deployments

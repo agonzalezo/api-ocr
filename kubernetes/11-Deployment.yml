@@ -29,20 +29,12 @@ spec:
           env:
             - name: PORT
               value: "3000"
-            - name: API_MONGO_URL
-              value: $API_MONGO_URL
-            - name: API_LOG_LEVEL
-              value: $API_LOG_LEVEL
-            - name: API_SECRET
-              value: $API_SECRET
             - name: API_NAME
               value: $API_NAME
-            - name: API_MAIL_HOST
-              value: $API_MAIL_HOST
           resources:
             requests:
-              memory: "70Mi"
-              cpu: "50m"
-            limits:
               memory: "100Mi"
-              cpu: "150m"
+              cpu: "100m"
+            limits:
+              memory: "150Mi"
+              cpu: "200m"

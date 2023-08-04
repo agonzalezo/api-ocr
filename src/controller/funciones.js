@@ -7,7 +7,7 @@ const ocrConfig = {
 }
 
 let __dirname = new URL('..', import.meta.url).pathname;
-__dirname = __dirname.substring(1) // for windows
+// __dirname = __dirname.substring(1) // for windows
 
 let funciones = {};
 const dirfiles = path.join(__dirname, "/uploaded-files/");

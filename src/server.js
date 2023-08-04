@@ -13,7 +13,7 @@ const app = express()
 // vars
 const __filename = new URL('', import.meta.url).pathname;
 let __dirname = new URL('.', import.meta.url).pathname;
-__dirname = __dirname.substring(1) // for windows
+// __dirname = __dirname.substring(1) // for windows
 const imagePath = path.join(__dirname, 'uploaded-files', 'image.jpg')
 
 const ocrConfig = {

@@ -8,6 +8,8 @@ on:
 
 env:
     APP_NAME: ${{ github.event.repository.name }}
+    NAME_SPACE: xylon
+    PORT: 3000
 
 jobs:
   build_docker_image: 
@@ -50,10 +52,10 @@ jobs:
       run: echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > ${HOME}/.kube/config
     - name: Use context
       run: kubectl config use-context default
-    - name: Debug
-      run: pwd && ls -lha
+    - name: Make deployable..
+      run: cd kubernetes && ./deploy.sh
     - name: Deploy to Kubernetes
-      run: kubectl apply -f kubernetes/01-service.yml -f kubernetes/11-Deployment.yml
+      run: kubectl apply -f kubernetes/01-Service.yml -f kubernetes/11-Deployment.yml
     - name: Restart Deployments
       run: kubectl -n xylon rollout restart deployment ${{ github.event.repository.name }}
     - name: Check Deployment node-chat

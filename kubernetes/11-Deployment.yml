@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-$API_NAME
+  namespace: $NAME_SPACE
+  labels:
+    microservice: api-$API_NAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      microservice: api-$API_NAME
+  template:
+    metadata:
+      labels:
+        microservice: api-$API_NAME
+        component: appserver
+    spec:
+      containers:
+        - name: api-$API_NAME
+          image: agonzalezo/api-$API_NAME:latest
+          imagePullPolicy: Always
+          # command:
+          #   - "/usr/bin/tail"
+          #   - "-f"
+          #   - "/dev/null"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: API_MONGO_URL
+              value: $API_MONGO_URL
+            - name: API_LOG_LEVEL
+              value: $API_LOG_LEVEL
+            - name: API_SECRET
+              value: $API_SECRET
+            - name: API_NAME
+              value: $API_NAME
+            - name: API_MAIL_HOST
+              value: $API_MAIL_HOST
+          resources:
+            requests:
+              memory: "70Mi"
+              cpu: "50m"
+            limits:
+              memory: "100Mi"
+              cpu: "150m"

@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -f ../.env ]
+if [[ -f ../.env ]]
 then
     echo "Mapping env vars to yml file"
     export $(cat ../.env | xargs)

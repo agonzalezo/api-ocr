@@ -53,9 +53,9 @@ jobs:
     - name: Use context
       run: kubectl config use-context default
     - name: Make deployable..
-      run: cd kubernetes && ./deploy.sh
+      run: cd kubernetes && chmod +x && ./deploy.sh
     - name: Deploy to Kubernetes
-      run: kubectl apply -f kubernetes/01-Service.yml -f kubernetes/11-Deployment.yml
+      run: kubectl apply -f kubernetes/deployable.yml.tmp
     - name: Restart Deployments
       run: kubectl -n xylon rollout restart deployment ${{ github.event.repository.name }}
     - name: Check Deployment node-chat

@@ -3,7 +3,7 @@ import { URL } from 'url';
 import tesseract from 'node-tesseract-ocr';
 
 const ocrConfig = {
-    psm: 3,
+    psm: 11,
 }
 
 let __dirname = new URL('..', import.meta.url).pathname;

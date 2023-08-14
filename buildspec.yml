@@ -4,12 +4,12 @@ phases:
   pre_build:
     commands:
       - echo Building Docker image...
+      - echo "DOCKERHUB_TOKEN" | docker login -u "agonzalezo" --password-stdin
       - docker build -t agonzalezo/api-ocr:aws .
 
   build:
     commands:
       - echo Logging in to Docker Hub...
-      - echo "DOCKERHUB_TOKEN" | docker login -u "agonzalezo" --password-stdin
       - docker tag agonzalezo/api-ocr:aws agonzalezo/api-ocr:aws
 
   post_build:

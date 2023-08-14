@@ -9,11 +9,11 @@ phases:
   build:
     commands:
       - echo Logging in to Docker Hub...
-      - mkdir -p ~/.docker
-      - echo "$DOCKERHUB_TOKEN" ~/.docker/config.json
+      - echo "DOCKERHUB_TOKEN" | docker login -u "agonzalezo" --password-stdin
       - docker tag agonzalezo/api-ocr:aws agonzalezo/api-ocr:aws
 
   post_build:
     commands:
       - echo Pushing Docker image to Docker Hub...
+      - docker ps -a && docker images
       - docker push agonzalezo/api-ocr:aws
